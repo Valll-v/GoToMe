@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 import djoser
@@ -115,6 +116,7 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserAuthSerializer',
         'user': 'accounts.serializers.UserProfileSerializer',
+        'current_user': 'accounts.serializers.UserProfileSerializer',
     },
     'EMAIL': {
         'activation': 'djoser.accounts.ActivationEmail',
@@ -138,7 +140,8 @@ DJOSER = {
         "user_list": ["djoser.permissions.CurrentUserOrAdmin"],
         "token_create": ["rest_framework.permissions.AllowAny"],
         "token_destroy": ["rest_framework.permissions.IsAuthenticated"],
-        "check_code": ["rest_framework.permissions.AllowAny"]
+        "check_code": ["rest_framework.permissions.AllowAny"],
+        "change_photo": ["djoser.permissions.CurrentUserOrAdmin"]
     }
 }
 
@@ -184,6 +187,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+MEDIA_URL = ''
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

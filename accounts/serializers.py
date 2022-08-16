@@ -8,10 +8,14 @@ User = get_user_model()
 class UserAuthSerializer(UserCreateSerializer):
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ('username', 'password', 'email', 'gender', 'birthday', 'name', 'age', 'country', 'city',
+                  'description')
 
 
 class UserProfileSerializer(UserSerializer):
     class Meta:
         model = UserProfile
-        fields = ('name', 'age', 'country', 'city', 'description')
+        fields = ('photo', 'username', 'registration_date', 'name', 'age', 'birthday', 'country', 'city', 'description')
+
+
+

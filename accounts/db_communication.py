@@ -1,5 +1,3 @@
-import hashlib
-
 from accounts import utils
 from accounts.models import UserProfile
 
